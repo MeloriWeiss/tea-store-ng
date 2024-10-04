@@ -1,0 +1,30 @@
+.loader-block {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.43);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.loader {
+  width: 150px;
+  height: 150px;
+  border: 15px solid #b8e4ff;
+  border-top-color: #076BFF;
+  border-radius: 50%;
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

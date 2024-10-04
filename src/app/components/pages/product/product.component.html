@@ -1,0 +1,15 @@
+<div class="col">
+  <div class="w-100 h-100 my-5 py-5">
+    <div class="open-image col-3 mx-auto">
+      <img src="{{product.image}}" class="card-img-top" alt="Image one">
+      <div class="price text-end">{{product.price | currency : 'руб.'}}</div>
+    </div>
+    <div class="card-body col-7 d-flex flex-column mx-auto text-center">
+      <h5 class="card-title fw-bold mb-5">{{product.title}}</h5>
+      <p class="card-text mb-5 product-description">{{product.description}}</p>
+      <a routerLink="/order" (click)="addToCart()" type="button" style="width: 10rem" class="btn btn-primary hvr-sweep-to-top mx-auto">
+        Купить
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<section>
+  <div class="container inputs d-flex justify-content-center align-items-center min-vh-100">
+    <div>
+
+      <div *ngIf="!orderComplete; then form else thanks"></div>
+
+      <ng-template #form>
+        <div>
+          <h2 class="text-center mt-5 mb-5">Сделать заказ</h2>
+        </div>
+        <form [formGroup]="formValues" class="row col-12 col-lg-7 ms-auto me-auto wow animate__fadeInRight">
+          <div class="col-12 col-md-4">
+            <div class="mb-3">
+              <label for="name" class="form-label">Имя</label>
+              <input type="text" class="form-control" id="name" formControlName="name">
+              <div *ngIf="formValues.get('name')?.invalid &&
+             (formValues.get('name')?.touched || formValues.get('name')?.dirty)">
+                <div class="text-danger" *ngIf="formValues.get('name')?.errors?.['required']">
+                  Поле обязательное
+                </div>
+                <div class="text-danger" *ngIf="formValues.get('name')?.errors?.['pattern']">
+                  Введите имя корректно
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="mb-3">
+              <label for="last-name" class="form-label">Фамилия</label>
+              <input type="text" class="form-control" id="last-name" formControlName="lastName">
+              <div *ngIf="formValues.get('lastName')?.invalid &&
+             (formValues.get('lastName')?.touched || formValues.get('lastName')?.dirty)">
+                <div class="text-danger" *ngIf="formValues.get('lastName')?.errors?.['required']">
+                  Поле обязательное
+                </div>
+                <div class="text-danger" *ngIf="formValues.get('lastName')?.errors?.['pattern']">
+                  Введите фамилию корректно
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="mb-3">
+              <label for="phone" class="form-label">Телефон</label>
+              <input type="tel" class="form-control" id="phone" formControlName="phone">
+              <div *ngIf="formValues.get('phone')?.invalid &&
+             (formValues.get('phone')?.touched || formValues.get('phone')?.dirty)">
+                <div class="text-danger" *ngIf="formValues.get('phone')?.errors?.['required']">
+                  Поле обязательное
+                </div>
+                <div class="text-danger" *ngIf="formValues.get('phone')?.errors?.['pattern']">
+                  Введите телефон корректно
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label for="country" class="form-label">Страна</label>
+              <input type="text" class="form-control" id="country" formControlName="country">
+              <div class="text-danger" *ngIf="formValues.get('country')?.invalid &&
+             (formValues.get('country')?.touched || formValues.get('country')?.dirty) &&
+              formValues.get('country')?.errors?.['required']">
+                Поле обязательное
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label for="zip" class="form-label">Индекс</label>
+              <input type="text" class="form-control" id="zip" formControlName="zip">
+              <div class="text-danger" *ngIf="formValues.get('zip')?.invalid &&
+             (formValues.get('zip')?.touched || formValues.get('zip')?.dirty) &&
+              formValues.get('zip')?.errors?.['required']">
+                Поле обязательное
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <label for="address" class="form-label">Адрес</label>
+            <input type="text" class="form-control" id="address" formControlName="address">
+            <div *ngIf="formValues.get('address')?.invalid &&
+             (formValues.get('address')?.touched || formValues.get('address')?.dirty)">
+              <div class="text-danger" *ngIf="formValues.get('address')?.errors?.['required']">
+                Поле обязательное
+              </div>
+              <div class="text-danger" *ngIf="formValues.get('address')?.errors?.['pattern']">
+                Введите адрес корректно
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="col-12 mb-3">
+              <label for="comment" class="form-label">Комментарий к заказу</label>
+              <textarea class="form-control" id="comment" formControlName="comment">
+            </textarea>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="col-12 mb-3">
+              <label for="product" class="form-label">Товар</label>
+              <input type="text" class="form-control" id="product" [attr.disabled]="processingForm" formControlName="product">
+              <div class="text-danger" *ngIf="formValues.get('product')?.errors?.['required']">
+                Поле обязательное. Вернитесь в каталог и выберите товар
+              </div>
+            </div>
+            <div class="col-12 text-end">
+              <button type="button" (click)="order()" [disabled]="processingForm"
+                      class="form-button btn btn-primary mt-2 col-4 hvr-rotate border-0 wow animate__bounce">
+                Отправить
+              </button>
+              <div class="text-danger" *ngIf="hasError">
+                Произошла ошибка. Попробуйте ещё раз...
+              </div>
+              <div class="text-danger" *ngIf="!fieldsFilled">
+                Заполните все поля
+              </div>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+
+      <ng-template #thanks>
+        <div class="fw-bold fs-2 text-secondary">Спасибо за заказ!</div>
+      </ng-template>
+    </div>
+  </div>
+</section>

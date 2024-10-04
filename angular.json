@@ -10,6 +10,9 @@
           "style": "scss"
         }
       },
+      "i18n": {
+        "sourceLocale": "ru-RU"
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -28,9 +31,15 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/jquery-ui/dist/themes/base/theme.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-ui/dist/jquery-ui.min.js"
+            ]
           },
           "configurations": {
             "production": {
