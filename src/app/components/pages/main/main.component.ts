@@ -11,7 +11,7 @@ declare var $: any;
 export class MainComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription | null = null;
-  private observable: Observable<boolean>
+  private observable: Observable<boolean>;
   openPopup: boolean = false;
   constructor() {
     this.observable = new Observable<boolean>(observer => {

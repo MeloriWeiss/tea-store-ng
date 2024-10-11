@@ -15,7 +15,7 @@
         </li>
       </ul>
       <form class="d-flex" role="search">
-        <input class="form-control me-2" [(ngModel)]="searchValue" name="search" type="search" placeholder="Поиск чая" aria-label="Search">
+        <input class="form-control me-2" [formControl]="searchValue" name="search" type="search" placeholder="Поиск чая" aria-label="Search">
         <button type="button" (click)="search()" class="btn btn-outline-primary w-50 button">Найти</button>
       </form>
     </div>

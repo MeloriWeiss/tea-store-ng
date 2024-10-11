@@ -22,7 +22,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   formValues = this.fb.group({
     name: ['', [Validators.required, Validators.pattern('^\\s*[А-Я][а-я]+\\s*$')]],
     lastName: ['', [Validators.required, Validators.pattern('^\\s*[А-Я][а-я]+\\s*$')]],
-    phone: ['', [Validators.required, Validators.pattern('^[0-9]{11}$')]],
+    phone: ['', [Validators.required, Validators.pattern('^\\+?\\d{11}$')]],
     country: ['', Validators.required],
     zip: ['', Validators.required],
     address: ['', [Validators.required, Validators.pattern('^[А-Яа-я0-9/ -]+$')]],

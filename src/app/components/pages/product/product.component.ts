@@ -39,7 +39,7 @@ export class ProductComponent implements OnInit {
             },
             error: (error) => {
               console.log(error);
-              this.router.navigate(['/']);
+              this.router.navigate(['/']).then();
             }
           });
       }

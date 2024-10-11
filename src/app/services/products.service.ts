@@ -1,6 +1,6 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {ProductType} from "../types/product.type";
 import {ActivatedRoute} from "@angular/router";
 
@@ -9,23 +9,22 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProductsService {
 
-  searchParam: string | null = null;
-  constructor(private http: HttpClient,
-              private activatedRoute: ActivatedRoute) {
+  subjectSearch: Subject<string>;
+  searchValue: string | null = null;
+  constructor(private http: HttpClient) {
 
-    this.activatedRoute.queryParams.subscribe(params => {
-      if (params['search']) {
-        this.searchParam = params['search'];
-      } else {
-        this.searchParam = null;
-      }
-    });
+    this.subjectSearch = new Subject<string>();
   }
 
   getProducts(): Observable<ProductType[]> {
-    if (this.searchParam) {
-      return this.http.get<ProductType[]>(`https://testologia.ru/tea?search=${this.searchParam}`);
+    if (this.searchValue) {
+      return this.http.get<ProductType[]>(`https://testologia.ru/tea?search=${this.searchValue}`);
     }
     return this.http.get<ProductType[]>('https://testologia.ru/tea');
+  }
+
+  changeSearch(search: string): void {
+    this.searchValue = search;
+    this.subjectSearch.next(search);
   }
 }

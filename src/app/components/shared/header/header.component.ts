@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {Subject} from "rxjs";
-import {SearchProductsService} from "../../../services/search-products.service";
+import {FormControl} from "@angular/forms";
+import {ProductsService} from "../../../services/products.service";
 
 @Component({
   selector: 'header-component',
@@ -10,15 +10,20 @@ import {SearchProductsService} from "../../../services/search-products.service";
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() searchValue: string = '';
+  searchValue = new FormControl('');
   constructor(private router: Router,
-              private searchSubject: SearchProductsService) { }
+              private productsService: ProductsService) { }
 
   ngOnInit(): void {
   }
 
   search() {
-    this.searchSubject.subject.next(this.searchValue);
-    this.router.navigate(['products'], {queryParams: {search: this.searchValue}});
+    this.router.navigate(['/products']).then();
+    if (this.searchValue && this.searchValue.value) {
+      console.log(this.searchValue.value);
+      this.productsService.changeSearch(<string>this.searchValue.value);
+    } else {
+      this.productsService.changeSearch('');
+    }
   }
 }

@@ -3,7 +3,6 @@ import {ProductType} from "../../../types/product.type";
 import {ProductsService} from "../../../services/products.service";
 import {Router} from "@angular/router";
 import {Subscription, tap} from "rxjs";
-import {SearchProductsService} from "../../../services/search-products.service";
 
 @Component({
   selector: 'app-products',
@@ -15,7 +14,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   products: ProductType[] = [];
   showLoader: boolean = false;
   private subscription: Subscription | null = null;
-  private subscriptionSearchSubject: Subscription | null = null;
+  private subscriptionSubjectSearch: Subscription | null = null;
   private searchText: string = '';
   private productsWithSearch: boolean = false;
 
@@ -23,16 +22,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   constructor(private productsService: ProductsService,
               private router: Router,
-              private rend: Renderer2,
-              private searchSubject: SearchProductsService) {
+              private rend: Renderer2,) {
   }
 
   ngOnInit(): void {
     this.getProducts();
 
-    this.subscriptionSearchSubject = this.searchSubject.subject.subscribe(searchText => {
+    this.subscriptionSubjectSearch = this.productsService.subjectSearch.subscribe(searchText => {
       this.searchText = searchText;
-      this.productsWithSearch = true;
+      this.productsWithSearch = !!searchText;
       this.getProducts();
     })
   }
@@ -49,25 +47,29 @@ export class ProductsComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (result) => {
           if (result.length === 0) {
-            this.rend.setProperty(this.title?.nativeElement, 'innerText', 'Ничего не найдено');
+            this.changeTitle('Ничего не найдено');
           } else {
             if (this.productsWithSearch) {
-              this.rend.setProperty(this.title?.nativeElement, 'innerText', `Результаты поиска по запросу: ${this.searchText}`);
+              this.changeTitle(`Результаты поиска по запросу: ${this.searchText}`);
             } else {
-              this.rend.setProperty(this.title?.nativeElement, 'innerText', 'Наши чайные коллекции');
+              this.changeTitle('Наши чайные коллекции');
             }
           }
           this.products = result;
         },
         error: (error) => {
           console.log(error);
-          this.router.navigate(['/']);
+          this.router.navigate(['/']).then();
         }
       })
   }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
-    this.subscriptionSearchSubject?.unsubscribe();
+    this.subscriptionSubjectSearch?.unsubscribe();
+  }
+
+  changeTitle(title: string): void {
+    this.rend.setProperty(this.title?.nativeElement, 'innerText', title);
   }
 }
