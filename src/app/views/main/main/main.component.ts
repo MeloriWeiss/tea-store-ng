@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subscription, tap} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 
 
 declare var $: any;

@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {ProductType} from "../../../types/product.type";
-import {ProductsService} from "../../../services/products.service";
 import {Router} from "@angular/router";
 import {Subscription, tap} from "rxjs";
+import {ProductsService} from "../../../shared/services/products.service";
+import {ProductType} from "../../../../types/product.type";
 
 @Component({
   selector: 'app-products',

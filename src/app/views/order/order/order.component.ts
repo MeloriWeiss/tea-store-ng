@@ -1,9 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CartService} from "../../../services/cart.service";
 import {FormBuilder, Validators} from "@angular/forms";
-import {OrderService} from "../../../services/order.service";
-import {Router} from "@angular/router";
 import {Observable, Subscription, tap} from "rxjs";
+import {CartService} from "../../../shared/services/cart.service";
+import {OrderService} from "../../../shared/services/order.service";
 
 @Component({
   selector: 'order-component',
