@@ -1,6 +1,6 @@
 <section>
-  <div class="container row ms-auto me-auto min-vw-100 position-relative wow animate__backInUp py-5 my-5">
-    <div class="col-12 col-lg-8 ms-auto me-auto">
+  <div class="container row ms-auto me-auto position-relative wow animate__backInUp py-5 my-5">
+    <div class="col-12 col-lg-8 ms-auto me-auto w-75">
       <div class="open-image">
         <img src="../../../../assets/images/banner1.png" alt="Banner one" class="w-100">
       </div>
@@ -10,10 +10,10 @@
 
 
 <section class="questions">
-  <div class="container row ms-1 me-1 min-vw-100">
-    <div class="col-12 col-lg-7 ms-auto me-auto">
+  <div class="container row ms-auto me-auto">
+    <div class="col-12 col-lg-7 w-75 ms-auto me-auto">
       <h2 class="text-center mt-5 mb-5 fs-2 fw-bold">Ответы на часто задаваемые вопросы</h2>
-      <div id="accordion" class="w-100 ms-auto me-auto wow animate__fadeInTopRight">
+      <div id="accordion" class="ms-auto me-auto">
         <h3
           class="bg-primary bg-gradient p-4 fw-bold text-white d-flex align-items-center justify-content-between fs-5">
           Собираете ли вы подарочные боксы?
@@ -98,8 +98,8 @@
   </div>
 </section>
 
-<section *ngIf="openPopup" class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center text-center">
-  <div class="col-3 rounded-5 bg-white p-5 border border-secondary">
+<section *ngIf="openPopup" (click)="closePopup()" class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center text-center">
+  <div class="col-3 rounded-5 bg-white p-5 border border-secondary" (click)="stopClosing($event)">
     <div class="mb-4">
       Посмотрите наши чайные коллекции
     </div>

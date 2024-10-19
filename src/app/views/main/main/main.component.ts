@@ -49,4 +49,11 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }
+
+  closePopup() {
+    this.openPopup = false;
+  }
+  stopClosing(event: Event) {
+    event.stopPropagation();
+  }
 }
