@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkControlWork22_tea=self.webpackChunkControlWork22_tea||[]).push([[592],{5237:(u,e,t)=>{t.d(e,{N:()=>c});var o=t(8256);let c=(()=>{class r{constructor(){this.productTitle=""}}return r.\u0275fac=function(n){return new(n||r)},r.\u0275prov=o.Yz7({token:r,factory:r.\u0275fac,providedIn:"root"}),r})()}}]);
